@@ -60,7 +60,7 @@
 \references{
   Mee Young Park and Trevor Hastie (2006) Penalized Logistic Regression
   for Detecting Gene Interactions - available at the authors' websites,
-  \url{http://www.stanford.edu/~mypark} or
+  \url{http://stat.stanford.edu/~mypark} or
   \url{http://stat.stanford.edu/~hastie/pub.htm}.
 }
 \author{Mee Young Park and Trevor Hastie}
