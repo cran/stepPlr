@@ -3,9 +3,9 @@
   Internal plr functions
 }
 \alias{anova.stepplr}
-\alias{cross.Imat}
-\alias{get.Imat}
-\alias{Imat}
+\alias{cross.imat}
+\alias{get.imat}
+\alias{imat}
 \alias{print.plr}
 \alias{print.stepplr}
 \alias{summary.plr}
@@ -13,9 +13,9 @@
 \alias{term.match}
 \usage{
   anova.stepplr(object, ...)
-  cross.Imat(imat1, imat2)
-  get.Imat(x, level = NULL)
-  Imat(object, x)
+  cross.imat(imat1, imat2)
+  get.imat(x, level = NULL)
+  imat(object, x)
   print.plr(x, ...)
   print.stepplr(x, ...)
   summary.plr(object, ...)
@@ -26,10 +26,8 @@
   Internal plr functions
 }
 \references{
-  Mee Young Park and Trevor Hastie (2006) Penalized Logistic Regression
-  for Detecting Gene Interactions - available at the authors' websites,
-  \url{http://stat.stanford.edu/~mypark} or
-  \url{http://stat.stanford.edu/~hastie/pub.htm}.
+  Mee Young Park and Trevor Hastie (2008) Penalized Logistic Regression
+  for Detecting Gene Interactions
 }
 \author{Mee Young Park and Trevor Hastie}
 \keyword{internal}

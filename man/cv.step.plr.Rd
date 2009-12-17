@@ -9,8 +9,8 @@
   \code{lambda} and \code{cp}. 
 }
 \usage{
-  cv.step.plr(x, y, weights = rep(1, length(y)), nfold = 5,
-              folds = NULL, lambda = c(1e-4, 1e-2, 1),
+  cv.step.plr(x, y, weights = rep(1, length(y)),
+              nfold = 5, folds = NULL, lambda = c(1e-4, 1e-2, 1),
               cp = c("aic", "bic"), cv.type=c("deviance", "class"),
               trace = TRUE, ...)
 }
@@ -22,14 +22,14 @@
     binary response
   }
   \item{weights}{
-    an optional vector of weights for observations
+    optional vector of weights for observations
   }
   \item{nfold}{
     number of folds to be used in cross-validation. Default is
     \code{nfold=5.}
   }
   \item{folds}{
-    the list of cross-validation folds. Its length must be nfold. If
+    list of cross-validation folds. Its length must be nfold. If
     \code{NULL,} the folds are randomly generated.
   }
   \item{lambda}{
@@ -58,10 +58,8 @@
   done only on the parameter with multiple inputs.
 }
 \references{
-  Mee Young Park and Trevor Hastie (2006) Penalized Logistic Regression
-  for Detecting Gene Interactions - available at the authors' websites,
-  \url{http://stat.stanford.edu/~mypark} or
-  \url{http://stat.stanford.edu/~hastie/pub.htm}.
+  Mee Young Park and Trevor Hastie (2008) Penalized Logistic Regression
+  for Detecting Gene Interactions
 }
 \author{Mee Young Park and Trevor Hastie}
 \seealso{

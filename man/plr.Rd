@@ -8,7 +8,9 @@
   the L2 norm of the coefficients.
 }
 \usage{
-  plr(x, y, weights = rep(1,length(y)), lambda = 1e-4, cp = "bic")
+  plr(x, y, weights = rep(1,length(y)),
+      offset.subset = NULL, offset.coefficients = NULL,
+      lambda = 1e-4, cp = "bic")
 }
 \arguments{
   \item{x}{
@@ -18,7 +20,18 @@
     binary response 
   }
   \item{weights}{
-    an optional vector of weights for observations
+    optional vector of weights for observations
+  }
+  \item{offset.subset}{
+    optional vector of indices for the predictors for which the
+    coefficients are preset to \code{offset.coefficients}. If
+    \code{offset.coefficients} is not \code{NULL}, \code{offset.subset}
+    must be provided.
+  }
+  \item{offset.coefficients}{
+    optional vector of preset coefficient values for the predictors in
+    \code{offset.subset}. If \code{offset.coefficient} is not
+    \code{NULL}, \code{offset.coefficients} must be provided.
   }
   \item{lambda}{
     regularization parameter for the L2 norm of the coefficients. The
@@ -29,7 +42,7 @@
   \item{cp}{
     complexity parameter to be used when computing the
     score. \code{score=deviance+cp*df.} If \code{cp="aic"} or
-    \code{cp="bic",} these are converted to \code{cp=2} and
+    \code{cp="bic",} these are converted to \code{cp=2} or
     \code{cp=log(sample size),} respectively. Default is
     \code{cp="bic".}
   }
@@ -41,7 +54,7 @@
     vector of the coefficient estimates
   }
   \item{covariance}{
-    a sandwich estimate of the covariance matrix for the coefficients
+    sandwich estimate of the covariance matrix for the coefficients
   }
   \item{deviance}{
     deviance of the fitted model
@@ -76,18 +89,13 @@
 \details{
   We proposed using logistic regression with a quadratic penalization on
   the coefficients for detecting gene interactions as described in
-  "Penalized Logistic Regression for Detecting Gene Interactions (2006)"
+  "Penalized Logistic Regression for Detecting Gene Interactions (2008)"
   by Park and Hastie. However, this function \code{plr} may be used for
   a general purpose. 
-    
-  We thank Michael Saunders of SOL, Stanford University for providing
-  the solver used for the convex optimization in this function.
 }
 \references{
-  Mee Young Park and Trevor Hastie (2006) Penalized Logistic Regression
-  for Detecting Gene Interactions - available at the authors' websites,
-  \url{http://stat.stanford.edu/~mypark} or
-  \url{http://stat.stanford.edu/~hastie/pub.htm}.
+  Mee Young Park and Trevor Hastie (2008) Penalized Logistic Regression
+  for Detecting Gene Interactions
 }
 \author{Mee Young Park and Trevor Hastie}
 \seealso{

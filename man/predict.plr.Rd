@@ -13,10 +13,10 @@
 }
 \arguments{
   \item{object}{
-    a \code{plr} object
+    \code{plr} object
   }
   \item{newx}{
-    a matrix of features at which the predictions are made. If
+    matrix of features at which the predictions are made. If
     \code{newx=NULL,} predictions for the training data are returned.
   }
   \item{type}{
@@ -26,14 +26,12 @@
     \code{type=link.}
   }
   \item{...}{
-    other options for the prediction
+    other options for prediction
   }
 }
 \references{
-  Mee Young Park and Trevor Hastie (2006) Penalized Logistic Regression
-  for Detecting Gene Interactions - available at the authors' websites,
-  \url{http://stat.stanford.edu/~mypark} or
-  \url{http://stat.stanford.edu/~hastie/pub.htm}.
+  Mee Young Park and Trevor Hastie (2008) Penalized Logistic Regression
+  for Detecting Gene Interactions
 }
 \author{Mee Young Park and Trevor Hastie}
 \seealso{

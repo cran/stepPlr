@@ -10,8 +10,9 @@
 }
 \usage{
   step.plr(x, y, weights = rep(1,length(y)), fix.subset = NULL,
-           level = NULL, lambda = 1e-4, cp = "bic",
-           max.terms = 5, type = c("both", "forward"), trace = FALSE)  
+           level = NULL, lambda = 1e-4, cp = "bic", max.terms = 5,
+           type = c("both", "forward", "forward.stagewise"),
+           trace = FALSE)  
 }
 \arguments{
   \item{x}{
@@ -21,14 +22,14 @@
     binary response 
   }
   \item{weights}{
-    an optional vector of weights for observations
+    optional vector of weights for observations
   }
   \item{fix.subset}{
-    a vector of indices for the variables that are forced to be in the
+    vector of indices for the variables that are forced to be in the
     model
   }
   \item{level}{
-    a list of length \code{ncol(x).} The j-th element corresponds to
+    list of length \code{ncol(x).} The j-th element corresponds to
     the j-th column of \code{x.} If the j-th column of \code{x} is
     discrete, \code{level[[j]]} is the set of levels for the
     categorical factor. If the j-th column of \code{x} is continuous,
@@ -49,18 +50,19 @@
   \item{cp}{
     complexity parameter to be used when computing the
     score. \code{score=deviance+cp*df.} If \code{cp="aic"} or
-    \code{cp="bic",} these are converted to \code{cp=2} and
+    \code{cp="bic",} these are converted to \code{cp=2} or
     \code{cp=log(sample size),} respectively. Default is
     \code{cp="bic".}
   }
   \item{max.terms}{
-    the maximum number of terms to be added in the forward selection
+    maximum number of terms to be added in the forward selection
     procedure. Default is \code{max.terms=5.}
   }
   \item{type}{
-    If \code{type="both",} the forward selection is followed by a
-    backward deletion. If \code{type="forward",} only a forward
-    selection is done. Default is \code{"both".}
+    If \code{type="both",} forward selection is followed by a backward
+    deletion. If \code{type="forward",} only a forward selection is
+    done. If \code{type="forward.stagewise",} variables are added in
+    the forward-stagewise method. Default is \code{"both".}
   }
   \item{trace}{
     If \code{TRUE,} the variable selection procedure prints out its
@@ -71,14 +73,14 @@
   A \code{stepplr} object is returned. \code{anova, predict, print,} and
   \code{summary} functions can be applied.
   \item{fit}{
-    a \code{plr} object for the optimal model selected
+    \code{plr} object for the optimal model selected
   }
   \item{action}{
-    a list that stores the selection order of the terms in the optimal
-    model. 
+    list that stores the selection order of the terms in the optimal
+    model
   }
   \item{action.name}{
-    a list of the names of the sequentially added terms - in the same
+    list of the names of the sequentially added terms - in the same
     order as in \code{action}
   }
   \item{deviance}{
@@ -91,7 +93,7 @@
     deviance + cp*df, where df is the model degrees of freedom
   }
   \item{group}{
-    a vector of the counts for the dummy variables, to be used in
+    vector of the counts for the dummy variables, to be used in
     \code{predict.stepplr}
   }
   \item{y}{
@@ -122,7 +124,7 @@
 \details{
   This function implements an L2 penalized logistic regression along
   with the stepwise variable selection procedure, as described in
-  "Penalized Logistic Regression for Detecting Gene Interactions (2006)"
+  "Penalized Logistic Regression for Detecting Gene Interactions (2008)"
   by Park and Hastie.
 
   If \code{type="forward",} \code{max.terms} terms are sequentially
@@ -131,15 +133,10 @@
   deletion is done in addition, which provides a series of models with a
   different combination of the selected terms. The optimal model
   minimizing \code{score} is chosen from the second list.
-  
-  We thank Michael Saunders of SOL, Stanford University for providing
-  the solver used for the convex optimization in this function.
 }
 \references{
-  Mee Young Park and Trevor Hastie (2006) Penalized Logistic Regression
-  for Detecting Gene Interactions - available at the authors' websites,
-  \url{http://stat.stanford.edu/~mypark} or
-  \url{http://stat.stanford.edu/~hastie/pub.htm}.
+  Mee Young Park and Trevor Hastie (2008) Penalized Logistic Regression
+  for Detecting Gene Interactions
 }
 \author{Mee Young Park and Trevor Hastie}
 \seealso{
