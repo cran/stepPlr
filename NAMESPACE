@@ -1,4 +1,13 @@
-useDynLib(stepPlr)
+useDynLib(stepPlr, .registration = TRUE)
 
 export(anova.stepplr, cv.step.plr, plr, predict.plr, predict.stepplr, print.plr, print.stepplr, step.plr, summary.plr, summary.stepplr)
 
+import(stats)
+
+S3method(anova, stepplr)
+S3method(predict, plr)
+S3method(predict, stepplr)
+S3method(print, plr)
+S3method(print, stepplr)
+S3method(summary, plr)
+S3method(summary, stepplr)

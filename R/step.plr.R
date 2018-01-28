@@ -1,7 +1,7 @@
 step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
                      level = NULL, lambda = 1e-4, cp = 'bic', max.terms = 5,
                      type = c('both', 'forward', 'forward.stagewise'),
-                     trace = FALSE)  
+                     trace = FALSE)
   {
     this.call <- match.call()
     type <- match.arg(type)
@@ -65,7 +65,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
             ix1 <- ix0
             dev[m + 1] <- fit$dev
             df[m + 1] <- fit$df
-            score[m + 1] <- fit$score 
+            score[m + 1] <- fit$score
             group[[2]] <- c(group[[1]], rep(m, ncol(ix1) - ncolx))
             action[[m]] <- -term
             action.name[[m]] <- xnames[term]
@@ -85,7 +85,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
                            offset.coefficients, lambda, cp)
                 if (fit$score < score[m + 1]) {
                   bestfit[[m + 1]] <- fit
-                  ix1 <- ix0             
+                  ix1 <- ix0
                   dev[m + 1] <- fit$dev
                   df[m + 1] <- fit$df
                   score[m + 1] <- fit$score
@@ -115,7 +115,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
                   bestfit[[m + 1]] <- fit
                   ix1 <- ix0
                   dev[m + 1] <- fit$dev
-                  df[m + 1] <- fit$df                  
+                  df[m + 1] <- fit$df
                   score[m + 1] <- fit$score
                   group[[2]] <- c(group[[1]], rep(m, ncol(ix1) - ncolx))
                   action[[m]] <- c(i, ii)
@@ -126,7 +126,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
             }
           }
         }
-      }                
+      }
       if (add1)
         term1 <- term1[term1 != addterm1]
       if (trace) {
@@ -169,7 +169,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
     action.name.f <- action.name
     action.b <- rep(0, m)
     dev <- c(dev[1], rep(0, m - 1), dev[m + 1])
-    df <- c(df[1], rep(0, m - 1), df[m + 1])    
+    df <- c(df[1], rep(0, m - 1), df[m + 1])
     score <- c(score[1], rep(Inf, m - 1), score[m + 1])
     back.i <- seq(m)
     if (trace)
@@ -192,7 +192,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
             dev[m] <- fit$dev
             df[m] <- fit$df
             score[m] <- fit$score
-            group[[2]] <- group[[1]][group[[1]] != back.i[i]] 
+            group[[2]] <- group[[1]][group[[1]] != back.i[i]]
             action.b[m] <- delete.i <- back.i[i]
           }
         }
@@ -215,7 +215,7 @@ step.plr <- function(x, y, weights = rep(1, length(y)), fix.subset = NULL,
     if (nfix > 0) {
       min.score <- min(score[-seq(nfix)])
       M <- min(which(score[-seq(nfix)] <= min.score + eps))
-      M <- M + nfix 
+      M <- M + nfix
     } else {
       min.score <- min(score)
       M <- min(which(score <= min.score + eps))
@@ -406,6 +406,6 @@ print.stepplr <- function(x, ...)
     cat('Residual deviance:', round(fit$deviance, digits = 2),
         'on', round(fit$nobs - fit$df, digits = 2), 'degrees of freedom\n')
     cat('            Score: deviance +', round(fit$cp, digits = 1),
-        '* df =', round(fit$score, digits = 2), '\n')    
+        '* df =', round(fit$score, digits = 2), '\n')
   }
 

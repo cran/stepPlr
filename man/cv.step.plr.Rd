@@ -29,7 +29,7 @@
     \code{nfold=5.}
   }
   \item{folds}{
-    list of cross-validation folds. Its length must be nfold. If
+    list of cross-validation folds. Its length must be \code{nfold}. If
     \code{NULL,} the folds are randomly generated.
   }
   \item{lambda}{
@@ -68,13 +68,11 @@ step.plr
 \examples{
 n <- 100
 p <- 5
-x <- matrix(sample(seq(3),n*p,replace=TRUE),nrow=n)
-y <- sample(c(0,1),n,replace=TRUE)
-level <- vector("list",length=p)
+x <- matrix(sample(seq(3), n * p, replace=TRUE), nrow=n)
+y <- sample(c(0, 1), n, replace=TRUE)
+level <- vector("list", length=p)
 for (i in 1:p) level[[i]] <- seq(3)
-cvfit1 <- cv.step.plr(x,y,level=level,lambda=c(1e-4,1e-2,1),cp="bic")
-cvfit2 <- cv.step.plr(x,y,level=level,lambda=1e-4,cp=c(2,3,4))
-cvfit3 <- cv.step.plr(x,y,level=level,lambda=c(1e-4,1e-2,1),cp=c(2,3,4))
+cvfit <- cv.step.plr(x, y, level=level, lambda=c(1e-4, 1e-2, 1), cp="bic")
 }
 \keyword{models}
 \keyword{regression}

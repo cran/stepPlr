@@ -8,8 +8,8 @@
   or the class labels for new data, using a \code{stepplr} object.
 }
 \usage{
-  predict.stepplr(object, x = NULL, newx = NULL,
-                  type = c("link", "response", "class"), ...)
+  \method{predict}{stepplr}(object, x = NULL, newx = NULL,
+        type = c("link", "response", "class"), ...)
 }
 \arguments{
   \item{object}{
@@ -44,17 +44,17 @@ stepplr
 \examples{
 n <- 100
 p <- 5
-x0 <- matrix(sample(seq(3),n*p,replace=TRUE),nrow=n)
-x0 <- cbind(rnorm(n),x0)
-y <- sample(c(0,1),n,replace=TRUE)
-level <- vector("list",length=6)
+x0 <- matrix(sample(seq(3), n * p, replace=TRUE), nrow=n)
+x0 <- cbind(rnorm(n), x0)
+y <- sample(c(0, 1), n, replace=TRUE)
+level <- vector("list", length=6)
 for (i in 2:6) level[[i]] <- seq(3)
-fit <- step.plr(x0,y,level=level)
-x1 <- matrix(sample(seq(3),n*p,replace=TRUE),nrow=n)
-x1 <- cbind(rnorm(n),x1)
-pred1 <- predict(fit,x0,x1,type="link")
-pred2 <- predict(fit,x0,x1,type="response")
-pred3 <- predict(fit,x0,x1,type="class")
+fit <- step.plr(x0, y, level=level)
+x1 <- matrix(sample(seq(3), n * p, replace=TRUE), nrow=n)
+x1 <- cbind(rnorm(n), x1)
+pred1 <- predict(fit, x0, x1, type="link")
+pred2 <- predict(fit, x0, x1, type="response")
+pred3 <- predict(fit, x0, x1, type="class")
 }
 \keyword{models}
 \keyword{regression}

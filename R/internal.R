@@ -26,7 +26,7 @@ get.imat <- function(x, level = NULL)
           level[[j]] <- sort(unique(x[ ,j]))
       }
     }
-    names(level) <- xnames    
+    names(level) <- xnames
     for (j in 1:p) {
       m <- max(length(level[[j]]), 1)
       if (m > 1) {
@@ -36,7 +36,7 @@ get.imat <- function(x, level = NULL)
         for (jj in 1:m) {
           iimat[x[ ,j] == level[[j]][jj], jj] <- 1
         }
-        if (nmiss > 0) {          
+        if (nmiss > 0) {
           prior <- apply(iimat[!missing, ], 2, sum) / (n - nmiss)
           prior <- rep(prior, rep(nmiss, m))
           iimat[missing, ] <- prior
@@ -90,7 +90,7 @@ imat <- function(object, x)
         ix0 <- cross.imat(ix1, ix2)
       }
       ix <- cbind(ix, ix0)
-      group <- c(group, rep(i, ncol(ix0)))        
+      group <- c(group, rep(i, ncol(ix0)))
     }
     return(ix)
   }

@@ -198,11 +198,11 @@ c initial function and gradient evaluations, initial direction
           tol = dmax1 (gnorm*StopFac, tol)
       endif
 
-      if ( PrintLevel ) then
-          write (*, 10) iter, f, gnorm, AWolfe
-10        format ('iter: ', i5, ' f= ', e14.6,
-     &            ' gnorm= ', e14.6, ' AWolfe= ', l2)
-      endif
+c      if ( PrintLevel ) then
+c          write (*, 10) iter, f, gnorm, AWolfe
+c10        format ('iter: ', i5, ' f= ', e14.6,
+c     &            ' gnorm= ', e14.6, ' AWolfe= ', l2)
+c      endif
 
       if ( cg_tol (f, gnorm) ) goto 100
 
@@ -251,11 +251,11 @@ c
           endif
           f0 = f
 
-          if ( PrintLevel ) then
-              write (*, 20) QuadOK, alpha, f0, dphi0
-20            format ('QuadOK:', l2, ' initial a:',
-     &                 e14.6,' f0:', e14.6, ' dphi', e14.6)
-          endif
+c          if ( PrintLevel ) then
+c              write (*, 20) QuadOK, alpha, f0, dphi0
+c20            format ('QuadOK:', l2, ' initial a:',
+c     &                 e14.6,' f0:', e14.6, ' dphi', e14.6)
+c          endif
 
 c parameters in Wolfe and approximiate Wolfe conditions, and in update
 
@@ -381,9 +381,9 @@ c     update search direction d = -g + beta*dold
 
 c     search direction d = -g
 
-              if ( PrintLevel ) then
-                  write (*, *) "RESTART CG"
-              endif
+c              if ( PrintLevel ) then
+c                  write (*, *) "RESTART CG"
+c              endif
               gnorm = zero
               gnorm2 = zero
               do i = 1, n5
@@ -434,20 +434,20 @@ c     search direction d = -g
                   AWolfe = .true.
               endif
           endif
-      
-          if ( PrintLevel ) then
-              write (*, 10) iter, f, gnorm, AWolfe
-          endif
 
-          if ( debug ) then
-              if ( f .gt. f0 + 1.e-10*Ck ) then
-                  write (*, 270)
-                  write (*, 50) f, f0
-50                format (' new value:', e30.16, 'old value:', e30.16)
-                  stop
-              endif
-          endif
-                  
+c     if ( PrintLevel ) then
+c              write (*, 10) iter, f, gnorm, AWolfe
+c          endif
+
+c          if ( debug ) then
+c              if ( f .gt. f0 + 1.e-10*Ck ) then
+c                  write (*, 270)
+c                  write (*, 50) f, f0
+c50                format (' new value:', e30.16, 'old value:', e30.16)
+c                  stop
+c              endif
+c          endif
+
           if ( dphi0 .gt. zero ) then
              info = 5
              goto 100
@@ -462,53 +462,53 @@ c     search direction d = -g
           do i = 1, n
               x (i) = xtemp (i)
               g (i) = gtemp (i)
-              gnorm = dmax1 (gnorm, dabs(g (i))) 
+              gnorm = dmax1 (gnorm, dabs(g (i)))
           enddo
       endif
-      if ( PrintFinal ) then
-          write (6, *) 'Termination status:', status
-          if ( status .eq. 0 ) then
-              write (6, 200)
-          else if ( status .eq. 1 ) then
-              write (6, 210)
-          else if ( status .eq. 2 ) then
-              write (6, 220) maxit
-              write (6, 300)
-              write (6, 400) grad_tol
-          else if ( status .eq. 3 ) then
-              write (6, 230)
-              write (6, 300)
-              write (6, 430)
-              write (6, 410)
-          else if ( status .eq. 4 ) then
-              write (6, 240)
-              write (6, 300)
-              write (6, 400) grad_tol
-          else if ( status .eq. 5 ) then
-              write (6, 250)
-          else if ( status .eq. 6 ) then
-              write (6, 260)
-              write (6, 300)
-              write (6, 400) grad_tol
-              write (6, 410)
-              write (6, 420)
-          else if ( status .eq. 7 ) then
-              write (6, 260)
-              write (6, 300)
-              write (6, 400) grad_tol
-          else if ( status .eq. 8 ) then
-              write (6, 260)
-              write (6, 300)
-              write (6, 400) grad_tol
-              write (6, 410)
-              write (6, 420)
-          endif
-          write (6, 500) gnorm
-          write (6, *) 'function value:', f
-          write (6, *) 'cg iterations:', iter
-          write (6, *) 'function evaluations:', nfunc
-          write (6, *) 'gradient evaluations:', ngrad
-      endif
+c      if ( PrintFinal ) then
+c          write (6, *) 'Termination status:', status
+c          if ( status .eq. 0 ) then
+c              write (6, 200)
+c          else if ( status .eq. 1 ) then
+c              write (6, 210)
+c          else if ( status .eq. 2 ) then
+c              write (6, 220) maxit
+c              write (6, 300)
+c              write (6, 400) grad_tol
+c          else if ( status .eq. 3 ) then
+c              write (6, 230)
+c              write (6, 300)
+c              write (6, 430)
+c              write (6, 410)
+c          else if ( status .eq. 4 ) then
+c              write (6, 240)
+c              write (6, 300)
+c              write (6, 400) grad_tol
+c          else if ( status .eq. 5 ) then
+c              write (6, 250)
+c          else if ( status .eq. 6 ) then
+c              write (6, 260)
+c              write (6, 300)
+c              write (6, 400) grad_tol
+c              write (6, 410)
+c              write (6, 420)
+c          else if ( status .eq. 7 ) then
+c              write (6, 260)
+c              write (6, 300)
+c              write (6, 400) grad_tol
+c          else if ( status .eq. 8 ) then
+c              write (6, 260)
+c              write (6, 300)
+c              write (6, 400) grad_tol
+c              write (6, 410)
+c              write (6, 420)
+c          endif
+c          write (6, 500) gnorm
+c          write (6, *) 'function value:', f
+c          write (6, *) 'cg iterations:', iter
+c          write (6, *) 'function evaluations:', nfunc
+c          write (6, *) 'gradient evaluations:', ngrad
+c      endif
       return
 200   format (' Convergence tolerance for gradient satisfied')
 210   format (' Terminating since change in function value <= feps*|f|')
@@ -665,7 +665,7 @@ c      (int)    dim     --problem dimension (also denoted n)
       n6 = n5 + 1
       nf = 0
       ng = 0
-      close (10)
+c      close (10)
       return
       end
 
@@ -707,11 +707,11 @@ c test original Wolfe conditions
 
           if ( f-f0 .le. alpha*wolfe_hi ) then
               cg_Wolfe = .true.
-              if ( PrintLevel ) then
-                  write (*, 10) f, f0, alpha*wolfe_hi, dphi
-10                format (' wolfe f:', e14.6, ' f0: ',
-     &                    e14.6, e14.6, ' dphi:', e14.6)
-              endif
+c              if ( PrintLevel ) then
+c                  write (*, 10) f, f0, alpha*wolfe_hi, dphi
+c10                format (' wolfe f:', e14.6, ' f0: ',
+c     &                    e14.6, e14.6, ' dphi:', e14.6)
+c              endif
               return
 
 c test approximate Wolfe conditions
@@ -719,11 +719,11 @@ c test approximate Wolfe conditions
           elseif ( AWolfe ) then
               if ( (f .le. fpert).and.(dphi .le. awolfe_hi) ) then
                   cg_Wolfe = .true.
-                  if ( PrintLevel ) then
-                      write (*, 20) f, fpert, dphi, awolfe_hi
-20                        format ('f:', e14.6, ' fpert:', e14.6,
-     &                            ' dphi: ', e14.6, ' fappx:', e14.6)
-                  endif
+c                  if ( PrintLevel ) then
+c                      write (*, 20) f, fpert, dphi, awolfe_hi
+c20                        format ('f:', e14.6, ' fpert:', e14.6,
+c     &                            ' dphi: ', e14.6, ' fappx:', e14.6)
+c                  endif
                   return
               endif
           endif
@@ -935,11 +935,11 @@ c
           if ( QuadOK ) then
               if ( ngrow .eq. 0 ) fquad = dmin1 (phi, f0)
               if ( phi .le. fquad ) then
-                  if ( PrintLevel ) then
-                      write (*, 10) alpha, phi, fquad
-10                    format ('alpha:', e14.6, ' phi:', e14.6,
-     &                        ' fquad:', e14.6)
-                  endif
+c                  if ( PrintLevel ) then
+c                      write (*, 10) alpha, phi, fquad
+c10                    format ('alpha:', e14.6, ' phi:', e14.6,
+c     &                        ' fquad:', e14.6)
+c                  endif
                   if ( cg_Wolfe (alpha, phi, dphi) ) return
               endif
           endif
@@ -965,12 +965,12 @@ c
                   if ( dphi .ge. zero ) goto 100
                   call cg_value (phi, xtemp, n, z, lenz, nobs, lam)
                   nf = nf + 1
-                  if ( PrintLevel ) then
-                      write (6, 20) a, b, alpha, phi, dphi
-20                    format ('contract, a:', e14.6,
-     &                        ' b:', e14.6, ' alpha:', e14.6,
-     &                        ' phi:', e14.6, ' dphi:', e14.6)
-                  endif
+c                  if ( PrintLevel ) then
+c                      write (6, 20) a, b, alpha, phi, dphi
+c20                    format ('contract, a:', e14.6,
+c     &                        ' b:', e14.6, ' alpha:', e14.6,
+c     &                        ' phi:', e14.6, ' dphi:', e14.6)
+c                  endif
                   if ( QuadOK .and. (phi .le. fquad) ) then
                       if ( cg_Wolfe (alpha, phi, dphi) ) return
                   endif
@@ -995,11 +995,11 @@ c
           call cg_grad (gtemp, xtemp, n, z, lenz, nobs, lam) 
           ng = ng + 1
           dphi = cg_dot (gtemp, d)
-          if ( PrintLevel ) then
-              write (*, 30) a, alpha, phi, dphi
-30            format ('expand,   a:', e14.6, ' alpha:', e14.6,
-     &                 ' phi:', e14.6, ' dphi:', e14.6)
-          endif
+c          if ( PrintLevel ) then
+c              write (*, 30) a, alpha, phi, dphi
+c30            format ('expand,   a:', e14.6, ' alpha:', e14.6,
+c     &                 ' phi:', e14.6, ' dphi:', e14.6)
+c          endif
       enddo
 100   continue
       b = alpha
@@ -1013,11 +1013,11 @@ c
           endif
       endif
       do iter = 1, nsecant
-          if ( PrintLevel ) then
-              write (*, 40) a, b, dphia, dphib
-40            format ('secant, a:', e14.6, ' b:', e14.6,
-     &                 ' da:', e14.6, ' db:', e14.6)
-          endif
+c          if ( PrintLevel ) then
+c              write (*, 40) a, b, dphia, dphib
+c40            format ('secant, a:', e14.6, ' b:', e14.6,
+c     &                 ' da:', e14.6, ' db:', e14.6)
+c          endif
           width = gamma*(b - a)
           if ( -dphia .le. dphib ) then
               alpha = a - (a-b)*(dphia/(dphia-dphib))
@@ -1049,7 +1049,7 @@ c
                   endif
               endif
               if ( (alpha .gt. a) .and. (alpha .lt. b) ) then
-                  if ( PrintLevel ) write (*, *) "2nd secant"
+c                  if ( PrintLevel ) write (*, *) "2nd secant"
                   flag = cg_update (a, dphia, b, dphib, alpha, phi,
      &                      dphi, x, xtemp, d, gtemp, cg_value, cg_grad,
      &                      z, lenz, nobs, lam)
@@ -1058,10 +1058,10 @@ c
           endif
 c
 c    bisection iteration
-c  
+c
           if ( (b-a) .ge. width ) then
               alpha = .5d0*(b+a)
-              if ( PrintLevel ) write (*, *) "bisection"
+c              if ( PrintLevel ) write (*, *) "bisection"
               flag = cg_update (a, dphia, b, dphib, alpha, phi,
      &                  dphi, x, xtemp, d, gtemp, cg_value, cg_grad,
      &                  z, lenz, nobs, lam)
@@ -1153,11 +1153,11 @@ c
           if ( QuadOK ) then
               if ( ngrow .eq. 0 ) fquad = dmin1 (phi, f0)
               if ( phi .le. fquad ) then
-                  if ( PrintLevel ) then
-                      write (*, 10) alpha, phi, fquad
-10                    format ('alpha:', e14.6, ' phi:', e14.6,
-     &                        ' fquad:', e14.6)
-                  endif
+c                  if ( PrintLevel ) then
+c                      write (*, 10) alpha, phi, fquad
+c10                    format ('alpha:', e14.6, ' phi:', e14.6,
+c     &                        ' fquad:', e14.6)
+c                  endif
                   if ( cg_Wolfe (alpha, phi, dphi) ) return
               endif
           endif
@@ -1185,12 +1185,12 @@ c
                   call cg_value (phi, xtemp, n, z, lenz, nobs, lam)
                   psi = phi - alpha*wolfe_hi
                   nf = nf + 1
-                  if ( PrintLevel ) then
-                      write (6, 20) a, b, alpha, phi, dphi
-20                    format ('contract, a:', e14.6,
-     &                        ' b:', e14.6, ' alpha:', e14.6,
-     &                        ' phi:', e14.6, ' dphi:', e14.6)
-                  endif
+c                  if ( PrintLevel ) then
+c                      write (6, 20) a, b, alpha, phi, dphi
+c20                    format ('contract, a:', e14.6,
+c     &                        ' b:', e14.6, ' alpha:', e14.6,
+c     &                        ' phi:', e14.6, ' dphi:', e14.6)
+c                  endif
                   if ( QuadOK .and. (phi .le. fquad) ) then
                       if ( cg_Wolfe (alpha, phi, dphi) ) return
                   endif
@@ -1216,12 +1216,12 @@ c
           ng = ng + 1
           dphi = cg_dot (gtemp, d)
           dpsi = dphi - wolfe_hi
-          if ( PrintLevel ) then
-              write (*, 30) a, alpha, phi, dphi
-30            format ('expand,   a:', e14.6, ' alpha:', e14.6,
-     &                 ' phi:', e14.6, ' dphi:', e14.6)
-              write (6, *) "expand, alpha:", alpha, "dphi:", dphi
-          endif
+c          if ( PrintLevel ) then
+c              write (*, 30) a, alpha, phi, dphi
+c30            format ('expand,   a:', e14.6, ' alpha:', e14.6,
+c     &                 ' phi:', e14.6, ' dphi:', e14.6)
+c              write (6, *) "expand, alpha:", alpha, "dphi:", dphi
+c          endif
       enddo
 100   continue
       b = alpha
@@ -1235,11 +1235,11 @@ c
           endif
       endif
       do iter = 1, nsecant
-          if ( PrintLevel ) then
-              write (*, 40) a, b, dpsia, dpsib
-40            format ('secant, a:', e14.6, ' b:', e14.6,
-     &                 ' da:', e14.6, ' db:', e14.6)
-          endif
+c          if ( PrintLevel ) then
+c              write (*, 40) a, b, dpsia, dpsib
+c40            format ('secant, a:', e14.6, ' b:', e14.6,
+c     &                 ' da:', e14.6, ' db:', e14.6)
+c          endif
           width = gamma*(b - a)
           if ( -dpsia .le. dpsib ) then
               alpha = a - (a-b)*(dpsia/(dpsia-dpsib))
@@ -1272,7 +1272,7 @@ c
                   endif
               endif
               if ( (alpha .gt. a) .and. (alpha .lt. b) ) then
-                  if ( PrintLevel ) write (*, *) "2nd secant"
+c                  if ( PrintLevel ) write (*, *) "2nd secant"
                   flag = cg_updateW (a, dpsia, b, dpsib, alpha,
      &                       phi, dphi, dpsi, x, xtemp, d, gtemp,
      &                       cg_value, cg_grad,
@@ -1282,10 +1282,10 @@ c
           endif
 c
 c    bisection iteration
-c  
+c
           if ( (b-a) .ge. width ) then
               alpha = .5d0*(b+a)
-              if ( PrintLevel ) write (*, *) "bisection"
+c              if ( PrintLevel ) write (*, *) "bisection"
               flag = cg_updateW (a, dpsia, b, dpsib, alpha,
      &                   phi, dphi, dpsi, x, xtemp, d, gtemp,
      &                   cg_value, cg_grad,
@@ -1362,11 +1362,11 @@ c      (external) cg_grad  -- routine to evaluate function gradient
       call cg_grad (gtemp, xtemp, n, z, lenz, nobs, lam) 
       ng = ng + 1
       dphi = cg_dot (gtemp, d)
-      if ( PrintLevel ) then
-          write (*, 10) alpha, phi, dphi
-10        format ('update alpha:', e14.6, ' phi:', e14.6,
-     &            ' dphi:', e14.6)
-      endif
+c      if ( PrintLevel ) then
+c          write (*, 10) alpha, phi, dphi
+c10        format ('update alpha:', e14.6, ' phi:', e14.6,
+c     &            ' dphi:', e14.6)
+c      endif
       cg_update = 0
       if ( cg_Wolfe (alpha, phi, dphi) ) then
           cg_update = 1
@@ -1399,11 +1399,11 @@ c      (external) cg_grad  -- routine to evaluate function gradient
           dphi = cg_dot (gtemp, d)
           call cg_value (phi, xtemp, n, z, lenz, nobs, lam)
           nf = nf + 1
-          if ( PrintLevel ) then
-              write (6, 20) a, alpha, phi, dphi
-20            format ('contract, a:', e14.6, ' alpha:', e14.6,
-     &                 ' phi:', e14.6, ' dphi:', e14.6)
-          endif
+c          if ( PrintLevel ) then
+c              write (6, 20) a, alpha, phi, dphi
+c20            format ('contract, a:', e14.6, ' alpha:', e14.6,
+c     &                 ' phi:', e14.6, ' dphi:', e14.6)
+c          endif
           if ( cg_Wolfe (alpha, phi, dphi) ) then
               cg_update = 1
               goto 110
@@ -1414,9 +1414,9 @@ c      (external) cg_grad  -- routine to evaluate function gradient
               goto 100
           endif
           if ( phi .le. fpert ) then
-              if ( PrintLevel ) then
-                  write (6, *) "update a:", alpha, "dphia:", dphi
-              endif
+c              if ( PrintLevel ) then
+c                  write (6, *) "update a:", alpha, "dphia:", dphi
+c              endif
               a = alpha
               dphia = dphi
           else
@@ -1426,11 +1426,11 @@ c      (external) cg_grad  -- routine to evaluate function gradient
 100   continue
       cg_update = -1
 110   continue
-      if ( PrintLevel ) then
-          write (*, 200) a, b, dphia, dphib, cg_update
-200       format ('UP a:', e14.6, ' b:', e14.6,
-     &             ' da:', e14.6, ' db:', e14.6, ' up:', i2)
-      endif
+c      if ( PrintLevel ) then
+c          write (*, 200) a, b, dphia, dphib, cg_update
+c200       format ('UP a:', e14.6, ' b:', e14.6,
+c     &             ' da:', e14.6, ' db:', e14.6, ' up:', i2)
+c      endif
       return
       end
 
@@ -1500,11 +1500,11 @@ c      (external) cg_grad  -- routine to evaluate function gradient
       ng = ng + 1
       dphi = cg_dot (gtemp, d)
       dpsi = dphi - wolfe_hi
-      if ( PrintLevel ) then
-          write (*, 10) alpha, psi, dpsi
-10        format ('update alpha:', e14.6, ' psi:', e14.6,
-     &            ' dpsi:', e14.6)
-      endif
+c      if ( PrintLevel ) then
+c          write (*, 10) alpha, psi, dpsi
+c10        format ('update alpha:', e14.6, ' psi:', e14.6,
+c     &            ' dpsi:', e14.6)
+c      endif
       cg_updateW = 0
       if ( cg_Wolfe (alpha, phi, dphi) ) then
           cg_updateW = 1
@@ -1539,11 +1539,11 @@ c      (external) cg_grad  -- routine to evaluate function gradient
           call cg_value (phi, xtemp, n, z, lenz, nobs, lam)
           psi = phi - alpha*wolfe_hi
           nf = nf + 1
-          if ( PrintLevel ) then
-              write (6, 20) a, alpha, phi, dphi
-20            format ('contract, a:', e14.6, ' alpha:', e14.6,
-     &                 ' phi:', e14.6, ' dphi:', e14.6)
-          endif
+c          if ( PrintLevel ) then
+c              write (6, 20) a, alpha, phi, dphi
+c20            format ('contract, a:', e14.6, ' alpha:', e14.6,
+c     &                 ' phi:', e14.6, ' dphi:', e14.6)
+c          endif
           if ( cg_Wolfe (alpha, phi, dphi) ) then
               cg_updateW = 1
               goto 110
@@ -1554,9 +1554,9 @@ c      (external) cg_grad  -- routine to evaluate function gradient
               goto 100
           endif
           if ( psi .le. fpert ) then
-              if ( PrintLevel ) then
-                  write (6, *) "update a:", alpha, "dpsia:", dpsi
-              endif
+c              if ( PrintLevel ) then
+c                  write (6, *) "update a:", alpha, "dpsia:", dpsi
+c              endif
               a = alpha
               dpsia = dpsi
           else
@@ -1566,11 +1566,11 @@ c      (external) cg_grad  -- routine to evaluate function gradient
 100   continue
       cg_updateW = -1
 110   continue
-      if ( PrintLevel ) then
-          write (*, 200) a, b, dpsia, dpsib, cg_updateW
-200       format ('UP a:', e14.6, ' b:', e14.6,
-     &             ' da:', e14.6, ' db:', e14.6, ' up:', i2)
-      endif
+c      if ( PrintLevel ) then
+c          write (*, 200) a, b, dpsia, dpsib, cg_updateW
+c200       format ('UP a:', e14.6, ' b:', e14.6,
+c     &             ' da:', e14.6, ' db:', e14.6, ' up:', i2)
+c      endif
       return
       end
 c Version 1.2 Changes:

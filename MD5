@@ -1,0 +1,14 @@
+250359cac2c662feb00cf349be574beb *DESCRIPTION
+675103939eb4632e63ad5cd4ab5f7625 *NAMESPACE
+dc106e2e488654b0c52b8560a384d3a1 *R/internal.R
+67c489005ee57a0a47c0fe542ed89dea *R/plr.R
+61fccc2bf4e8b5281b026ac6d80b0cf2 *R/step.plr.R
+7c5c291da7b1dc8b6edcb9073c4c3475 *man/cv.step.plr.Rd
+76d4f8d17c2386201738f68dfcf5c38e *man/plr-internal.Rd
+bf5e9d9c6bc5f1c01b75e81bdf8095dd *man/plr.Rd
+474f303c94fd9aaa6f33e1b8a0dc2bb1 *man/predict.plr.Rd
+c27afca4ae27017e92743f23a6195c33 *man/predict.stepplr.Rd
+55ba4a82defa4d221a1d7348a19e5170 *man/step.plr.Rd
+13e3a7ae5f8de0a3f5423c24695cd51f *src/cg_descent.f
+48814418a95ee4fd42ce1cb89d8bbf3a *src/solveplr.f
+47b3ec94178a2d8aa5d187d6d2d0e6d2 *src/stepPlr_init.c

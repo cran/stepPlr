@@ -12,14 +12,14 @@
 \alias{summary.stepplr}
 \alias{term.match}
 \usage{
-  anova.stepplr(object, ...)
+  \method{anova}{stepplr}(object, \dots)
   cross.imat(imat1, imat2)
   get.imat(x, level = NULL)
   imat(object, x)
-  print.plr(x, ...)
-  print.stepplr(x, ...)
-  summary.plr(object, ...)
-  summary.stepplr(object, ...)
+  \method{print}{plr}(x, \dots)
+  \method{print}{stepplr}(x, \dots)
+  \method{summary}{plr}(object, \dots)
+  \method{summary}{stepplr}(object, \dots)
   term.match(term1, term2, termlist, len)
 }
 \description{
